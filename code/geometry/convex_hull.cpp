@@ -1,22 +1,22 @@
 #include "polygon.cpp"
-#define MAXN 1000
-point hull[MAXN];
 bool cmp(const point &a, const point &b) {
   return abs(real(a) - real(b)) > EPS ?
     real(a) < real(b) : imag(a) < imag(b); }
-int convex_hull(polygon p) {
-  int n = size(p), l = 0;
-  sort(p.begin(), p.end(), cmp);
-  rep(i,0,n) {
-    if (i > 0 && p[i] == p[i - 1]) continue;
-    while (l >= 2 &&
-        ccw(hull[l - 2], hull[l - 1], p[i]) >= 0) l--;
-    hull[l++] = p[i]; }
-  int r = l;
-  for (int i = n - 2; i >= 0; i--) {
-    if (p[i] == p[i + 1]) continue;
-    while (r - l >= 1 &&
-        ccw(hull[r - 2], hull[r - 1], p[i]) >= 0) r--;
-    hull[r++] = p[i]; }
-  return l == 1 ? 1 : r - 1; }
+polygon convexHull(polygon pts) {
+  sort(pts.begin(), pts.end(), cmp);
+  polygon hull;
+  hull.reserve(pts.size() + 1);
+  for (int phase = 0; phase < 2; ++phase) {
+    auto start = hull.size();
+    for (auto& p : pts) {
+      while (hull.size() >= start+2 &&
+             ccw(p, hull.back(), hull[hull.size()-2]) <= 0)
+        hull.pop_back();
+      hull.push_back(p);
+    }
+    hull.pop_back();
+    reverse(pts.begin(), pts.end());
+  }
+  if (hull.size() == 2 && hull[0] == hull[1]) hull.pop_back();
+  return hull; }
 // vim: cc=60 ts=2 sts=2 sw=2:

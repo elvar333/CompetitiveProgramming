@@ -9,7 +9,7 @@ def mkhash(dat):
     conc = ""
     for i in dat:
         conc += re.sub('\s*', '', i) + "\n"
-        yield hashlib.md5(conc.decode('utf8')).hexdigest()[:2]
+        yield hashlib.md5(conc.encode()).hexdigest()[:2]
 
 for path, dirs, files in os.walk('./code'):
     for f in files:
@@ -37,17 +37,17 @@ for path, dirs, files in os.walk('./code'):
                     add -= 1
                 s = '-'*add + s
                 if(len(s) > MARGIN):
-                    print>>out, s
+                    print(s, file=out)
                     warning = True
                     last = True
                     if len(s) > MARGIN+4:
                         error = True
-                        print len(s), MARGIN
-                        print repr(s)
+                        print(len(s), MARGIN)
+                        print(repr(s))
                 else:
                     if len(s) < MARGIN:
                         s = s+' '
-                    print>>out, s.ljust(MARGIN, '-') + "//" + hash
+                    print(s.ljust(MARGIN, '-') + "//" + hash, file=out)
 
             if last:
                 error = True

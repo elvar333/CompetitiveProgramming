@@ -86,20 +86,9 @@
 
 \section{Code Templates}
     \subsection{Basic Configuration}
-        \subsubsection{.bashrc}
-        \bashcode{bashrc.sh}
-        ProTip\texttrademark: setxkbmap dvorak on qwerty: \texttt{o.yqtxmal ekrpat}
-
-        \subsubsection{.vimrc}
-        \bashcode{vimrc.sh}
-
     \subsection{C++ Header}
         A C++ header.
         \code{header.cpp}
-
-    \subsection{Java Template}
-        A Java template.
-        \code{template.java}
 
 
 \section{Data Structures}
@@ -152,15 +141,6 @@
         \fi
     \fi
 
-    \subsection{Cartesian Tree}
-        \code{data-structures/cartesian_tree.cpp}
-
-    \ifverbose
-    \subsection{Heap}
-        An implementation of a binary heap.
-        \code{data-structures/heap.cpp}
-    \fi
-
     \ifverbose
     \subsection{Dancing Links}
         \ifverbose
@@ -206,6 +186,15 @@
 
     \subsection{Sparse Table}
         \code{data-structures/sparse_table.cpp}
+    
+    \subsection{Splay Tree}
+        Supports the following queries\\
+        1 L R Output Maximum value in range [L,R]\\
+        2 L R Reverse the array [L,R]\\
+        3 L R v add  v in range [L,R]\\
+        4 pos removes entry from pos\\
+        5 pos v - insert an element after position v
+        \code{data-structures/splay.cpp}
 
 \section{Graphs}
     \subsection{Single-Source Shortest Paths}
@@ -799,12 +788,6 @@
         \fi
         \code{other/algorithm_x.cpp}
 
-    \subsection{Matroid Intersection}
-        Computes the maximum weight and cardinality intersection of two
-        matroids, specified by implementing the required abstract methods, in
-        $O(n^3(M_1+M_2))$.
-        \code{other/matroid_intersection.cpp}
-
     \subsection{$n$th Permutation}
         \ifverbose
         A very fast algorithm for computing the $n$th permutation of the list
@@ -827,28 +810,12 @@
         \fi
         \code{other/dates.cpp}
 
-    \subsection{Simulated Annealing}
-        An example use of Simulated Annealing to find a permutation of length $n$
-        that maximizes $\sum_{i=1}^{n-1}|p_i - p_{i+1}|$.
-        \code{other/simulated_annealing.cpp}
-
     \subsection{Simplex}
         \code{other/simplex.cpp}
 
     \subsection{Fast Square Testing}
         An optimized test for square integers.
         \code{tricks/is_square.cpp}
-
-    \subsection{Fast Input Reading}
-        \ifverbose
-        If input or output is huge, sometimes it is beneficial to optimize the
-        input reading/output writing. This can be achieved by reading all input
-        in at once (using fread), and then parsing it manually. Output can also
-        be stored in an output buffer and then dumped once in the end (using
-        fwrite). A simpler, but still effective, way to achieve speed is to use
-        the following input reading method.
-        \fi
-        \code{tricks/fast_input.cpp}
 
     \ifverbose
     \subsection{128-bit Integer}

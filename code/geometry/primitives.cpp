@@ -14,6 +14,7 @@ point reflect(P(p), L(about1, about2)) {
 point proj(P(u), P(v)) { return dot(u, v) / dot(u, u) * u; }
 point normalize(P(p), double k = 1.0) {
   return abs(p) == 0 ? point(0,0) : p / abs(p) * k; }
+double ccw(P(a), P(b)) { return cross(a, b); }
 double ccw(P(a), P(b), P(c)) { return cross(b - a, c - b); }
 bool collinear(P(a), P(b), P(c)) {
   return abs(ccw(a, b, c)) < EPS; }
